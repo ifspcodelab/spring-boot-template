@@ -2,14 +2,10 @@ package com.example.springboottemplate.user.api;
 
 import com.example.springboottemplate.user.service.CreateUserCommand;
 import com.example.springboottemplate.user.service.CreateUserService;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-
 import jakarta.validation.Valid;
-
 import lombok.AllArgsConstructor;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

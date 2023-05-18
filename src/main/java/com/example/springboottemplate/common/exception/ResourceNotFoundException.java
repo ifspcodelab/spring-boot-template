@@ -1,8 +1,7 @@
 package com.example.springboottemplate.common.exception;
 
-import lombok.Getter;
-
 import java.util.UUID;
+import lombok.Getter;
 
 @Getter
 public class ResourceNotFoundException extends RuntimeException {
