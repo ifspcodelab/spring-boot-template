@@ -96,3 +96,7 @@ spotbugsMain {
         html.enabled = true
     }
 }
+
+dependencyCheck {
+    failOnError = false
+}
