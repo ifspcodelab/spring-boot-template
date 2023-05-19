@@ -2,7 +2,6 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.1.0'
     id 'io.spring.dependency-management' version '1.1.0'
-    id 'org.hibernate.orm' version '6.1.7.Final'
     id 'com.diffplug.spotless' version '6.18.0'
     id 'com.github.spotbugs' version '5.0.14'
     id 'checkstyle'
@@ -39,14 +38,6 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
-}
-
-hibernate {
-    enhancement {
-        lazyInitialization true
-        dirtyTracking true
-        associationManagement true
-    }
 }
 
 spotless {
