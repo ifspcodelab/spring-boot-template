@@ -52,3 +52,11 @@ Rules for exclusion at `config/spotbugs/findbugs-exclude.xml`
 ```bash
 ./gradlew spotbugsTest
 ```
+
+## Security
+
+### dependency check
+
+```bash
+./gradlew dependencyCheckAnalyze
+```
