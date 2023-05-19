@@ -2,12 +2,9 @@ package com.example.springboottemplate.user.service;
 
 import com.example.springboottemplate.user.api.UserResponse;
 import com.example.springboottemplate.user.data.UserRepository;
-
-import lombok.AllArgsConstructor;
-
-import org.springframework.stereotype.Service;
-
 import java.util.List;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor

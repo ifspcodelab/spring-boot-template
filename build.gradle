@@ -4,7 +4,9 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.0'
     id 'org.hibernate.orm' version '6.1.7.Final'
     id 'org.graalvm.buildtools.native' version '0.9.20'
-    id 'com.diffplug.spotless' version "6.18.0"
+    id 'com.diffplug.spotless' version '6.18.0'
+    id 'com.github.spotbugs' version '5.0.14'
+    id 'checkstyle'
 }
 
 group = 'com.example'
@@ -55,9 +57,41 @@ spotless {
             exclude '**/build/**', '**/build-*/**'
         }
         toggleOffOn()
-        googleJavaFormat().aosp()
+        palantirJavaFormat()
+        encoding("UTF-8")
         removeUnusedImports()
         trimTrailingWhitespace()
         endWithNewline()
+    }
+
+    format 'misc', {
+        target '**/*.gradle', '**/*.xml', '**/.gitignore', '**/.properties', '**/*.yml', '**/*.sql'
+        targetExclude ".gradle/**", ".idea/**", "*/build/**"
+        encoding("UTF-8")
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+}
+
+checkstyle {
+    toolVersion = '9.3'
+    ignoreFailures = false
+    configFile = rootProject.file('config/checkstyle/checkstyle.xml')
+    configDirectory = rootProject.file("config/checkstyle")
+    sourceSets = [sourceSets.main]
+}
+
+spotbugs {
+    toolVersion = '4.7.3'
+    excludeFilter = rootProject.file('config/spotbugs/findbugs-exclude.xml')
+    ignoreFailures = false
+    spotbugsMain.enabled = true
+    spotbugsTest.enabled = false
+}
+
+spotbugsMain {
+    reports {
+        xml.enabled = false
+        html.enabled = true
     }
 }

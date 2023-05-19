@@ -8,5 +8,5 @@ import lombok.Getter;
 public enum ViolationType {
     ALREADY_EXISTS("already exists");
 
-    private String name;
+    private final String name;
 }
