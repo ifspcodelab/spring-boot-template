@@ -7,6 +7,7 @@ Spring boot template
 ### spotless
 
 Uses the [palantir-java-format](https://github.com/palantir/palantir-java-format) config in `gradle.build` to format source code.
+
 **How to run**
 
 Check
