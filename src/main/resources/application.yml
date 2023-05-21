@@ -8,3 +8,16 @@ spring:
     password: ${DATASOURCE_PASSWORD:postgres}
   jpa:
     open-in-view: false
+    show-sql: false
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+
+
+app:
+  security:
+    issuer: ${APP_JWT_ISSUER:spring-boot-template}
+    secret: ${APP_JWT_SECRET:F6RQWvFpYsEp5KCPRlOkWas7Q1rmC5wPbG1A05VCWg1xcSmaXqkHyBMEfJPRb5La}
+    access-token-duration-in-seconds: ${APP_JWT_ACCESS_TOKEN_DURATION_IN_SECONDS:2700}
+    refresh-token-duration-in-seconds: ${APP_JWT_REFRESH_TOKEN_DURATION_IN_SECONDS:86400}
+    password-reset-duration-in-seconds:  ${APP_PASSWORD_RESET_DURATION_IN_SECONDS:900}
