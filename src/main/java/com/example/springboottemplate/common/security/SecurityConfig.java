@@ -1,5 +1,6 @@
 package com.example.springboottemplate.common.security;
 
+import com.example.springboottemplate.user.common.recaptcha.RecaptchaFilter;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @AllArgsConstructor
 public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final RecaptchaFilter recaptchaFilter;
     private final UserDetailsService userDetailsService;
 
     @Bean
@@ -47,7 +49,7 @@ public class SecurityConfig {
                 "/api/v1/registrations",
                 "/api/v1/login",
                 "/api/v1/refresh-tokens/rotation",
-                "api/v1/password-reset/**");
+                "/api/v1/password-reset/**");
 
         http.cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
@@ -57,7 +59,8 @@ public class SecurityConfig {
                         .anyRequest()
                         .authenticated())
                 //                        .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(recaptchaFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

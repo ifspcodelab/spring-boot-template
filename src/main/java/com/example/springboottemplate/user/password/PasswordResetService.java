@@ -42,7 +42,7 @@ public class PasswordResetService {
         }
 
         PasswordReset passwordReset = passwordResetRepository.save(
-                new PasswordReset(user, appSecurityConfig.getPasswordResetDurationInSeconds()));
+                new PasswordReset(user, appSecurityConfig.passwordResetDurationInSeconds()));
         log.info("Password reset {} generated for user [{}, {}]", passwordReset.getId(), user.getId(), user.getEmail());
 
         // TODO: send email for user

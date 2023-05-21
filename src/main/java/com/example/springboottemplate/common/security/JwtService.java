@@ -17,14 +17,14 @@ public class JwtService {
 
     public DecodedJWT decodeToken(String token) {
         return JWT.require(getAlgorithm())
-                .withIssuer(appSecurityConfig.getIssuer())
+                .withIssuer(appSecurityConfig.issuer())
                 .build()
                 .verify(token);
     }
 
     public String generateAccessToken(User user) {
         return JWT.create()
-                .withIssuer(appSecurityConfig.getIssuer())
+                .withIssuer(appSecurityConfig.issuer())
                 .withSubject(user.getId().toString())
                 .withClaim("username", user.getEmail())
                 .withArrayClaim(
@@ -36,7 +36,7 @@ public class JwtService {
 
     public String generateRefreshToken(User user, UUID jwtId) {
         return JWT.create()
-                .withIssuer(appSecurityConfig.getIssuer())
+                .withIssuer(appSecurityConfig.issuer())
                 .withSubject(user.getId().toString())
                 .withIssuedAt(Instant.now())
                 .withExpiresAt(Instant.now().plusSeconds(getRefreshTokenDurationInSeconds()))
@@ -45,11 +45,11 @@ public class JwtService {
     }
 
     public Long getAccessTokenDurationInSeconds() {
-        return appSecurityConfig.getAccessTokenDurationInSeconds();
+        return appSecurityConfig.accessTokenDurationInSeconds();
     }
 
     public Long getRefreshTokenDurationInSeconds() {
-        return appSecurityConfig.getRefreshTokenDurationInSeconds();
+        return appSecurityConfig.refreshTokenDurationInSeconds();
     }
 
     public UUID getRefreshTokenId(String refreshToken) {
@@ -57,6 +57,6 @@ public class JwtService {
     }
 
     private Algorithm getAlgorithm() {
-        return Algorithm.HMAC512(appSecurityConfig.getSecret());
+        return Algorithm.HMAC512(appSecurityConfig.secret());
     }
 }
