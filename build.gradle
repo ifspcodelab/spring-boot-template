@@ -104,4 +104,3 @@ pmd {
     ruleSets = []
     ruleSetFiles = rootProject.files("config/pmd/ruleset.xml")
 }
-

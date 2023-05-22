@@ -14,35 +14,136 @@
 <!--    <exclude-pattern>.*/some/other/package/FunkyClassNamePrefix.*</exclude-pattern>-->
 <!--    <include-pattern>.*/some/package/ButNotThisClass.*</include-pattern>-->
 
-    <rule ref="category/java/bestpractices.xml">
-<!--        <exclude name=""/>-->
+<!--    Example of category with property changed-->
+<!--    <rule ref="category/java/design.xml/NPathComplexity">-->
+<!--        <properties>-->
+<!--            <property name="reportLevel">-->
+<!--                <value>150</value>-->
+<!--            </property>-->
+<!--        </properties>-->
+<!--    </rule>-->
+
+<!-- Best Practices -->
+    <rule ref="category/java/bestpractices.xml"/>
+
+<!-- Code Style -->
+    <rule ref="category/java/codestyle.xml/AtLeastOneConstructor">
+        <properties>
+            <property name="ignoredAnnotations" value="lombok.Data|lombok.Value|lombok.Builder
+            |lombok.NoArgsConstructor|lombok.RequiredArgsConstructor|lombok.AllArgsConstructor
+            |org.springframework.web.bind.annotation.ControllerAdvice" />
+        </properties>
+    </rule>
+    <rule ref="category/java/codestyle.xml/AvoidDollarSigns" />
+    <rule ref="category/java/codestyle.xml/AvoidProtectedFieldInFinalClass" />
+    <rule ref="category/java/codestyle.xml/AvoidProtectedMethodInFinalClassNotExtending" />
+    <rule ref="category/java/codestyle.xml/AvoidUsingNativeCode" />
+    <rule ref="category/java/codestyle.xml/BooleanGetMethodName" />
+    <rule ref="category/java/codestyle.xml/CallSuperInConstructor" />
+    <rule ref="category/java/codestyle.xml/ClassNamingConventions" />
+    <rule ref="category/java/codestyle.xml/CommentDefaultAccessModifier" />
+    <rule ref="category/java/codestyle.xml/ConfusingTernary" />
+    <rule ref="category/java/codestyle.xml/ControlStatementBraces">
+        <properties>
+            <property name="checkIfElseStmt" value="true" />
+            <property name="checkSingleIfStmt" value="true" />
+            <property name="checkWhileStmt" value="true" />
+            <property name="checkForStmt" value="true" />
+            <property name="checkDoWhileStmt" value="true" />
+            <property name="checkCaseStmt" value="false" />
+            <property name="allowEmptyLoop" value="false" />
+        </properties>
+    </rule>
+    <rule ref="category/java/codestyle.xml/EmptyControlStatement" />
+    <rule ref="category/java/codestyle.xml/EmptyMethodInAbstractClassShouldBeAbstract" />
+    <rule ref="category/java/codestyle.xml/ExtendsObject" />
+    <rule ref="category/java/codestyle.xml/FieldDeclarationsShouldBeAtStartOfClass" />
+    <rule ref="category/java/codestyle.xml/FieldNamingConventions" />
+    <rule ref="category/java/codestyle.xml/FinalParameterInAbstractMethod" />
+    <rule ref="category/java/codestyle.xml/ForLoopShouldBeWhileLoop" />
+    <rule ref="category/java/codestyle.xml/FormalParameterNamingConventions" />
+    <rule ref="category/java/codestyle.xml/GenericsNaming" />
+    <rule ref="category/java/codestyle.xml/IdenticalCatchBranches" />
+    <rule ref="category/java/codestyle.xml/LinguisticNaming" />
+    <rule ref="category/java/codestyle.xml/LocalHomeNamingConvention" />
+    <rule ref="category/java/codestyle.xml/LocalInterfaceSessionNamingConvention" />
+<!--    <rule ref="category/java/codestyle.xml/LocalVariableCouldBeFinal" /> -->
+    <rule ref="category/java/codestyle.xml/LocalVariableNamingConventions" />
+    <rule ref="category/java/codestyle.xml/LongVariable">
+        <properties>
+            <property name="minimum" value="17" />
+        </properties>
+    </rule>
+    <rule ref="category/java/codestyle.xml/MDBAndSessionBeanNamingConvention" />
+<!--    <rule ref="category/java/codestyle.xml/MethodArgumentCouldBeFinal" />-->
+    <rule ref="category/java/codestyle.xml/MethodNamingConventions" />
+    <rule ref="category/java/codestyle.xml/OnlyOneReturn" />
+    <rule ref="category/java/codestyle.xml/PackageCase" />
+    <rule ref="category/java/codestyle.xml/PrematureDeclaration" />
+    <rule ref="category/java/codestyle.xml/RemoteInterfaceNamingConvention" />
+    <rule ref="category/java/codestyle.xml/RemoteSessionInterfaceNamingConvention" />
+    <rule ref="category/java/codestyle.xml/ShortClassName">
+        <properties>
+            <property name="minimum" value="4" />
+        </properties>
+    </rule>
+    <rule ref="category/java/codestyle.xml/ShortMethodName">
+        <properties>
+            <property name="minimum" value="2" />
+        </properties>
+    </rule>
+    <rule ref="category/java/codestyle.xml/ShortVariable">
+        <properties>
+            <property name="minimum" value="2" />
+        </properties>
+    </rule>
+    <rule ref="category/java/codestyle.xml/TooManyStaticImports">
+        <properties>
+            <property name="maximumStaticImports" value="4" />
+        </properties>
+    </rule>
+    <rule ref="category/java/codestyle.xml/UnnecessaryAnnotationValueElement" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryBoxing" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryCast" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryConstructor" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryFullyQualifiedName" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryImport" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryLocalBeforeReturn" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryModifier" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryReturn" />
+    <rule ref="category/java/codestyle.xml/UnnecessarySemicolon" />
+    <rule ref="category/java/codestyle.xml/UseDiamondOperator" />
+    <rule ref="category/java/codestyle.xml/UselessParentheses" />
+    <rule ref="category/java/codestyle.xml/UselessQualifiedThis" />
+    <rule ref="category/java/codestyle.xml/UseShortArrayInitializer" />
+    <rule ref="category/java/codestyle.xml/UseUnderscoresInNumericLiterals">
+        <properties>
+            <property name="acceptableDecimalLength" value="4" />
+        </properties>
     </rule>
 
-    <rule ref="category/java/codestyle.xml">
+<!-- Design -->
+<!--    <rule ref="category/java/design.xml">-->
 
-    </rule>
+<!--    </rule>-->
 
-    <rule ref="category/java/design.xml">
+<!--    <rule ref="category/java/documentation.xml">-->
 
-    </rule>
+<!--    </rule>-->
 
-    <rule ref="category/java/documentation.xml">
+<!--    <rule ref="category/java/errorprone.xml">-->
 
-    </rule>
+<!--    </rule>-->
 
-    <rule ref="category/java/errorprone.xml">
+<!--    <rule ref="category/java/multithreading.xml">-->
 
-    </rule>
+<!--    </rule>-->
 
-    <rule ref="category/java/multithreading.xml">
+<!--    <rule ref="category/java/performance.xml">-->
 
-    </rule>
+<!--    </rule>-->
 
-    <rule ref="category/java/performance.xml">
+<!--    <rule ref="category/java/security.xml">-->
 
-    </rule>
-
-    <rule ref="category/java/security.xml">
-
-    </rule>
+<!--    </rule>-->
 </ruleset>
