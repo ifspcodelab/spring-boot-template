@@ -7,6 +7,7 @@ plugins {
     id 'com.diffplug.spotless' version '6.18.0'
     id 'com.github.spotbugs' version '5.0.14'
     id 'checkstyle'
+    id 'pmd'
 }
 
 group = 'com.example'
@@ -95,3 +96,12 @@ spotbugsMain {
         html.enabled = true
     }
 }
+
+pmd {
+    sourceSets = [ project.sourceSets.main ]
+    consoleOutput = true
+    toolVersion = "6.55.0"
+    ruleSets = []
+    ruleSetFiles = rootProject.files("config/pmd/ruleset.xml")
+}
+
