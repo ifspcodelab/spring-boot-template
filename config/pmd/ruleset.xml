@@ -13,15 +13,7 @@
 <!--    <exclude-pattern>.*/some/package/.*</exclude-pattern>-->
 <!--    <exclude-pattern>.*/some/other/package/FunkyClassNamePrefix.*</exclude-pattern>-->
 <!--    <include-pattern>.*/some/package/ButNotThisClass.*</include-pattern>-->
-
-<!--    Example of category with property changed-->
-<!--    <rule ref="category/java/design.xml/NPathComplexity">-->
-<!--        <properties>-->
-<!--            <property name="reportLevel">-->
-<!--                <value>150</value>-->
-<!--            </property>-->
-<!--        </properties>-->
-<!--    </rule>-->
+        <exclude-pattern>.*/src/main/java/com/example/springboottemplate/SpringBootTemplateApplication.java</exclude-pattern>
 
 <!-- Best Practices -->
     <rule ref="category/java/bestpractices.xml"/>
@@ -103,7 +95,7 @@
         </properties>
     </rule>
     <rule ref="category/java/codestyle.xml/UnnecessaryAnnotationValueElement" />
-    <rule ref="category/java/codestyle.xml/UnnecessaryBoxing" />
+<!--    <rule ref="category/java/codestyle.xml/UnnecessaryBoxing" />--> <!-- only works for 7.0.0 -->
     <rule ref="category/java/codestyle.xml/UnnecessaryCast" />
     <rule ref="category/java/codestyle.xml/UnnecessaryConstructor" />
     <rule ref="category/java/codestyle.xml/UnnecessaryFullyQualifiedName" />
@@ -123,9 +115,120 @@
     </rule>
 
 <!-- Design -->
-<!--    <rule ref="category/java/design.xml">-->
-
+    <rule ref="category/java/design.xml/AbstractClassWithoutAnyMethod" />
+    <rule ref="category/java/design.xml/AvoidCatchingGenericException" />
+    <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts">
+        <properties>
+            <property name="problemDepth" value="3" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/AvoidRethrowingException" />
+    <rule ref="category/java/design.xml/AvoidThrowingNewInstanceOfSameException" />
+    <rule ref="category/java/design.xml/AvoidThrowingNullPointerException" />
+    <rule ref="category/java/design.xml/AvoidThrowingRawExceptionTypes" />
+    <rule ref="category/java/design.xml/AvoidUncheckedExceptionsInSignatures" />
+    <rule ref="category/java/design.xml/ClassWithOnlyPrivateConstructorsShouldBeFinal" />
+    <rule ref="category/java/design.xml/CognitiveComplexity">
+        <properties>
+            <property name="reportLevel" value="15" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/CollapsibleIfStatements" />
+    <rule ref="category/java/design.xml/CouplingBetweenObjects">
+        <properties>
+            <property name="threshold" value="20" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/CyclomaticComplexity">
+        <properties>
+            <property name="classReportLevel" value="80" />
+            <property name="methodReportLevel" value="10" />
+            <property name="cycloOptions" value="" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/DataClass" />
+    <rule ref="category/java/design.xml/DoNotExtendJavaLangError" />
+    <rule ref="category/java/design.xml/ExceptionAsFlowControl" />
+    <rule ref="category/java/design.xml/ExcessiveImports">
+        <properties>
+            <property name="minimum" value="30" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/ExcessiveParameterList">
+        <properties>
+            <property name="minimum" value="10" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/ExcessivePublicCount">
+        <properties>
+            <property name="minimum" value="45" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/FinalFieldCouldBeStatic" />
+    <rule ref="category/java/design.xml/GodClass" />
+    <rule ref="category/java/design.xml/ImmutableField" />
+    <rule ref="category/java/design.xml/InvalidJavaBean">
+        <properties>
+            <property name="ensureSerialization" value="false" />
+            <property name="packages" value="org.example.aclasswithbeans" />
+        </properties>
+    </rule>
+<!--    <rule ref="category/java/design.xml/LawOfDemeter">--> <!-- trustRadius property is not working -->
+<!--        <properties>-->
+<!--            <property name="violationSuppressRegex" value="(.*method chain calls.*|.*object not created locally.*)"/>-->
+<!--        </properties>-->
 <!--    </rule>-->
+    <rule ref="category/java/design.xml/LogicInversion" />
+<!--    <rule ref="category/java/design.xml/LoosePackageCoupling" />--> <!-- must specify the packages and/or classes -->
+    <rule ref="category/java/design.xml/MutableStaticState" />
+    <rule ref="category/java/design.xml/NcssCount">
+        <properties>
+            <property name="methodReportLevel" value="60" />
+            <property name="classReportLevel" value="1500" />
+            <property name="ncssOptions" value="" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/NPathComplexity">
+        <properties>
+            <property name="reportLevel" value="200" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/SignatureDeclareThrowsException">
+        <properties>
+            <property name="IgnoreJUnitCompletely" value="false" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/SimplifiedTernary" />
+    <rule ref="category/java/design.xml/SimplifyBooleanExpressions" />
+    <rule ref="category/java/design.xml/SimplifyBooleanReturns" />
+    <rule ref="category/java/design.xml/SimplifyConditional" />
+    <rule ref="category/java/design.xml/SingularField">
+        <properties>
+            <property name="ignoredAnnotations" value="java.lang.Deprecated|javafx.fxml.FXML|lombok.Getter|lombok.Setter|lombok.experimental.Delegate" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/SwitchDensity">
+        <properties>
+            <property name="minimum" value="10" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/TooManyFields">
+        <properties>
+            <property name="maxfields" value="15" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/TooManyMethods">
+        <properties>
+            <property name="maxmethods" value="10" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/UselessOverridingMethod">
+        <properties>
+            <property name="ignoreAnnotations" value="false" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/UseObjectForClearerAPI" />
+    <rule ref="category/java/design.xml/UseUtilityClass" /> <!-- requires to exclude SpringBootApplication class -->
 
 <!--    <rule ref="category/java/documentation.xml">-->
 
