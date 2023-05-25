@@ -9,16 +9,21 @@
         General Ruleset
     </description>
 
-<!--   Use these patterns to exclude specific directories -->
-<!--    <exclude-pattern>.*/some/package/.*</exclude-pattern>-->
-<!--    <exclude-pattern>.*/some/other/package/FunkyClassNamePrefix.*</exclude-pattern>-->
-<!--    <include-pattern>.*/some/package/ButNotThisClass.*</include-pattern>-->
-        <exclude-pattern>.*/src/main/java/com/example/springboottemplate/SpringBootTemplateApplication.java</exclude-pattern>
-
-<!-- Best Practices -->
+    <!-- Best Practices -->
     <rule ref="category/java/bestpractices.xml"/>
 
-<!-- Code Style -->
+    <!-- Code Style -->
+    <rule ref="category/java/codestyle.xml">
+        <exclude name="LocalVariableCouldBeFinal"/>
+        <exclude name="MethodArgumentCouldBeFinal"/>
+        <!-- The following rules were excluded to be added again with explicit properties -->
+        <exclude name="AtLeastOneConstructor"/>
+        <exclude name="ControlStatementBraces"/>
+        <exclude name="LongVariable"/>
+        <exclude name="ShortClassName"/>
+        <exclude name="TooManyStaticImports"/>
+        <exclude name="UseUnderscoresInNumericLiterals"/>
+    </rule>
     <rule ref="category/java/codestyle.xml/AtLeastOneConstructor">
         <properties>
             <property name="ignoredAnnotations" value="lombok.Data|lombok.Value|lombok.Builder
@@ -26,15 +31,6 @@
             |org.springframework.web.bind.annotation.ControllerAdvice" />
         </properties>
     </rule>
-    <rule ref="category/java/codestyle.xml/AvoidDollarSigns" />
-    <rule ref="category/java/codestyle.xml/AvoidProtectedFieldInFinalClass" />
-    <rule ref="category/java/codestyle.xml/AvoidProtectedMethodInFinalClassNotExtending" />
-    <rule ref="category/java/codestyle.xml/AvoidUsingNativeCode" />
-    <rule ref="category/java/codestyle.xml/BooleanGetMethodName" />
-    <rule ref="category/java/codestyle.xml/CallSuperInConstructor" />
-    <rule ref="category/java/codestyle.xml/ClassNamingConventions" />
-    <rule ref="category/java/codestyle.xml/CommentDefaultAccessModifier" />
-    <rule ref="category/java/codestyle.xml/ConfusingTernary" />
     <rule ref="category/java/codestyle.xml/ControlStatementBraces">
         <properties>
             <property name="checkIfElseStmt" value="true" />
@@ -46,34 +42,11 @@
             <property name="allowEmptyLoop" value="false" />
         </properties>
     </rule>
-    <rule ref="category/java/codestyle.xml/EmptyControlStatement" />
-    <rule ref="category/java/codestyle.xml/EmptyMethodInAbstractClassShouldBeAbstract" />
-    <rule ref="category/java/codestyle.xml/ExtendsObject" />
-    <rule ref="category/java/codestyle.xml/FieldDeclarationsShouldBeAtStartOfClass" />
-    <rule ref="category/java/codestyle.xml/FieldNamingConventions" />
-    <rule ref="category/java/codestyle.xml/FinalParameterInAbstractMethod" />
-    <rule ref="category/java/codestyle.xml/ForLoopShouldBeWhileLoop" />
-    <rule ref="category/java/codestyle.xml/FormalParameterNamingConventions" />
-    <rule ref="category/java/codestyle.xml/GenericsNaming" />
-    <rule ref="category/java/codestyle.xml/IdenticalCatchBranches" />
-    <rule ref="category/java/codestyle.xml/LinguisticNaming" />
-    <rule ref="category/java/codestyle.xml/LocalHomeNamingConvention" />
-    <rule ref="category/java/codestyle.xml/LocalInterfaceSessionNamingConvention" />
-<!--    <rule ref="category/java/codestyle.xml/LocalVariableCouldBeFinal" /> -->
-    <rule ref="category/java/codestyle.xml/LocalVariableNamingConventions" />
     <rule ref="category/java/codestyle.xml/LongVariable">
         <properties>
             <property name="minimum" value="17" />
         </properties>
     </rule>
-    <rule ref="category/java/codestyle.xml/MDBAndSessionBeanNamingConvention" />
-<!--    <rule ref="category/java/codestyle.xml/MethodArgumentCouldBeFinal" />-->
-    <rule ref="category/java/codestyle.xml/MethodNamingConventions" />
-    <rule ref="category/java/codestyle.xml/OnlyOneReturn" />
-    <rule ref="category/java/codestyle.xml/PackageCase" />
-    <rule ref="category/java/codestyle.xml/PrematureDeclaration" />
-    <rule ref="category/java/codestyle.xml/RemoteInterfaceNamingConvention" />
-    <rule ref="category/java/codestyle.xml/RemoteSessionInterfaceNamingConvention" />
     <rule ref="category/java/codestyle.xml/ShortClassName">
         <properties>
             <property name="minimum" value="4" />
@@ -94,46 +67,46 @@
             <property name="maximumStaticImports" value="4" />
         </properties>
     </rule>
-    <rule ref="category/java/codestyle.xml/UnnecessaryAnnotationValueElement" />
-<!--    <rule ref="category/java/codestyle.xml/UnnecessaryBoxing" />--> <!-- only works for 7.0.0 -->
-    <rule ref="category/java/codestyle.xml/UnnecessaryCast" />
-    <rule ref="category/java/codestyle.xml/UnnecessaryConstructor" />
-    <rule ref="category/java/codestyle.xml/UnnecessaryFullyQualifiedName" />
-    <rule ref="category/java/codestyle.xml/UnnecessaryImport" />
-    <rule ref="category/java/codestyle.xml/UnnecessaryLocalBeforeReturn" />
-    <rule ref="category/java/codestyle.xml/UnnecessaryModifier" />
-    <rule ref="category/java/codestyle.xml/UnnecessaryReturn" />
-    <rule ref="category/java/codestyle.xml/UnnecessarySemicolon" />
-    <rule ref="category/java/codestyle.xml/UseDiamondOperator" />
-    <rule ref="category/java/codestyle.xml/UselessParentheses" />
-    <rule ref="category/java/codestyle.xml/UselessQualifiedThis" />
-    <rule ref="category/java/codestyle.xml/UseShortArrayInitializer" />
     <rule ref="category/java/codestyle.xml/UseUnderscoresInNumericLiterals">
         <properties>
             <property name="acceptableDecimalLength" value="4" />
         </properties>
     </rule>
 
-<!-- Design -->
-    <rule ref="category/java/design.xml/AbstractClassWithoutAnyMethod" />
-    <rule ref="category/java/design.xml/AvoidCatchingGenericException" />
+    <!-- Design -->
+    <rule ref="category/java/design.xml">
+        <exclude name="LawOfDemeter"/>
+        <!-- LoosePackageCoupling's rule requires either packages or classes defined to be used -->
+        <exclude name="LoosePackageCoupling"/>
+        <!-- The following rules were excluded to be added again with explicit properties -->
+        <exclude name="AvoidDeeplyNestedIfStmts"/>
+        <exclude name="CognitiveComplexity"/>
+        <exclude name="CouplingBetweenObjects"/>
+        <exclude name="CyclomaticComplexity"/>
+        <exclude name="ExcessiveImports"/>
+        <exclude name="ExcessiveParameterList"/>
+        <exclude name="ExcessivePublicCount"/>
+        <exclude name="InvalidJavaBean"/>
+        <exclude name="NcssCount"/>
+        <exclude name="NPathComplexity"/>
+        <exclude name="SignatureDeclareThrowsException"/>
+        <exclude name="SingularField"/>
+        <exclude name="SwitchDensity"/>
+        <exclude name="TooManyFields"/>
+        <exclude name="TooManyMethods"/>
+        <exclude name="UselessOverridingMethod"/>
+        <exclude name="UseUtilityClass"/>
+    </rule>
     <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts">
         <properties>
             <property name="problemDepth" value="3" />
         </properties>
     </rule>
-    <rule ref="category/java/design.xml/AvoidRethrowingException" />
-    <rule ref="category/java/design.xml/AvoidThrowingNewInstanceOfSameException" />
-    <rule ref="category/java/design.xml/AvoidThrowingNullPointerException" />
-    <rule ref="category/java/design.xml/AvoidThrowingRawExceptionTypes" />
-    <rule ref="category/java/design.xml/AvoidUncheckedExceptionsInSignatures" />
-    <rule ref="category/java/design.xml/ClassWithOnlyPrivateConstructorsShouldBeFinal" />
     <rule ref="category/java/design.xml/CognitiveComplexity">
         <properties>
             <property name="reportLevel" value="15" />
         </properties>
     </rule>
-    <rule ref="category/java/design.xml/CollapsibleIfStatements" />
     <rule ref="category/java/design.xml/CouplingBetweenObjects">
         <properties>
             <property name="threshold" value="20" />
@@ -146,9 +119,6 @@
             <property name="cycloOptions" value="" />
         </properties>
     </rule>
-    <rule ref="category/java/design.xml/DataClass" />
-    <rule ref="category/java/design.xml/DoNotExtendJavaLangError" />
-    <rule ref="category/java/design.xml/ExceptionAsFlowControl" />
     <rule ref="category/java/design.xml/ExcessiveImports">
         <properties>
             <property name="minimum" value="30" />
@@ -164,23 +134,12 @@
             <property name="minimum" value="45" />
         </properties>
     </rule>
-    <rule ref="category/java/design.xml/FinalFieldCouldBeStatic" />
-    <rule ref="category/java/design.xml/GodClass" />
-    <rule ref="category/java/design.xml/ImmutableField" />
     <rule ref="category/java/design.xml/InvalidJavaBean">
         <properties>
             <property name="ensureSerialization" value="false" />
             <property name="packages" value="org.example.aclasswithbeans" />
         </properties>
     </rule>
-<!--    <rule ref="category/java/design.xml/LawOfDemeter">--> <!-- trustRadius property is not working -->
-<!--        <properties>-->
-<!--            <property name="violationSuppressRegex" value="(.*method chain calls.*|.*object not created locally.*)"/>-->
-<!--        </properties>-->
-<!--    </rule>-->
-    <rule ref="category/java/design.xml/LogicInversion" />
-<!--    <rule ref="category/java/design.xml/LoosePackageCoupling" />--> <!-- must specify the packages and/or classes -->
-    <rule ref="category/java/design.xml/MutableStaticState" />
     <rule ref="category/java/design.xml/NcssCount">
         <properties>
             <property name="methodReportLevel" value="60" />
@@ -198,13 +157,14 @@
             <property name="IgnoreJUnitCompletely" value="false" />
         </properties>
     </rule>
-    <rule ref="category/java/design.xml/SimplifiedTernary" />
-    <rule ref="category/java/design.xml/SimplifyBooleanExpressions" />
-    <rule ref="category/java/design.xml/SimplifyBooleanReturns" />
-    <rule ref="category/java/design.xml/SimplifyConditional" />
     <rule ref="category/java/design.xml/SingularField">
         <properties>
-            <property name="ignoredAnnotations" value="java.lang.Deprecated|javafx.fxml.FXML|lombok.Getter|lombok.Setter|lombok.experimental.Delegate" />
+            <property name="ignoredAnnotations"
+                      value="java.lang.Deprecated
+                      |javafx.fxml.FXML
+                      |lombok.Getter
+                      |lombok.Setter
+                      |lombok.experimental.Delegate" />
         </properties>
     </rule>
     <rule ref="category/java/design.xml/SwitchDensity">
@@ -227,11 +187,20 @@
             <property name="ignoreAnnotations" value="false" />
         </properties>
     </rule>
-    <rule ref="category/java/design.xml/UseObjectForClearerAPI" />
-    <rule ref="category/java/design.xml/UseUtilityClass" /> <!-- requires to exclude SpringBootApplication class -->
+    <rule ref="category/java/design.xml/UseUtilityClass">
+        <properties>
+            <property name="ignoredAnnotations"
+                      value="org.springframework.boot.autoconfigure.SpringBootApplication"/>
+        </properties>
+    </rule>
 
-<!-- Documentation -->
-    <rule ref="category/java/documentation.xml/CommentContent" /> <!-- property forbiddenRegex not working -->
+    <!-- Documentation -->
+    <rule ref="category/java/documentation.xml">
+        <!-- The following rules were excluded to be added again with explicit properties -->
+        <exclude name="CommentRequired"/>
+        <exclude name="CommentSize"/>
+        <exclude name="UncommentedEmptyConstructor"/>
+    </rule>
     <rule ref="category/java/documentation.xml/CommentRequired">
         <properties>
             <property name="methodWithOverrideCommentRequirement" value="Required" />
@@ -256,21 +225,136 @@
             <property name="ignoreExplicitConstructorInvocation" value="false" />
         </properties>
     </rule>
-    <rule ref="category/java/documentation.xml/UncommentedEmptyMethodBody" />
 
-<!--    <rule ref="category/java/errorprone.xml">-->
+    <!-- Errorprone -->
+    <rule ref="category/java/errorprone.xml">
+        <exclude name="MissingSerialVersionUID"/>
+        <!-- The following rules were excluded to be added again with explicit properties -->
+        <exclude name="AssignmentInOperand"/>
+        <exclude name="AvoidBranchingStatementAsLastInLoop"/>
+        <exclude name="AvoidDuplicateLiterals"/>
+        <exclude name="AvoidLiteralsInIfCondition"/>
+        <exclude name="AvoidUsingOctalValues"/>
+        <exclude name="CloseResource"/>
+        <exclude name="CompareObjectsWithEquals"/>
+        <exclude name="EmptyCatchBlock"/>
+        <exclude name="MissingStaticMethodInNonInstantiatableClass"/>
+        <exclude name="NonSerializableClass"/>
+        <exclude name="ProperLogger"/>
+        <exclude name="TestClassWithoutTestCases"/>
+    </rule>
+    <rule ref="category/java/errorprone.xml/AssignmentInOperand">
+        <properties>
+            <property name="allowIf" value="false" />
+            <property name="allowFor" value="false" />
+            <property name="allowWhile" value="false" />
+            <property name="allowIncrementDecrement" value="false" />
+        </properties>
+    </rule>
+    <rule ref="category/java/errorprone.xml/AvoidBranchingStatementAsLastInLoop">
+        <properties>
+            <property name="checkBreakLoopTypes" value="for|do|while" />
+            <property name="checkContinueLoopTypes" value="for|do|while" />
+            <property name="checkReturnLoopTypes" value="for|do|while" />
+        </properties>
+    </rule>
+    <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
+        <properties>
+            <property name="maxDuplicateLiterals" value="4" />
+            <property name="minimumLength" value="3" />
+            <property name="skipAnnotations" value="false" />
+            <property name="exceptionList" value="" />
+        </properties>
+    </rule>
+    <rule ref="category/java/errorprone.xml/AvoidLiteralsInIfCondition">
+        <properties>
+            <property name="ignoreMagicNumbers" value="-1,0" />
+            <property name="ignoreExpressions" value="false" />
+        </properties>
+    </rule>
+    <rule ref="category/java/errorprone.xml/AvoidUsingOctalValues">
+        <properties>
+            <property name="strict" value="false" />
+        </properties>
+    </rule>
+    <rule ref="category/java/errorprone.xml/CloseResource">
+        <properties>
+            <property name="closeTargets" value="" />
+            <property name="types" value="java.lang.AutoCloseable,java.sql.Connection,java.sql.Statement,java.sql.ResultSet" />
+            <property name="closeAsDefaultTarget" value="true" />
+            <property name="allowedResourceTypes" value="java.io.ByteArrayOutputStream|java.io.ByteArrayInputStream|java.io.StringWriter|java.io.CharArrayWriter|java.util.stream.Stream|java.util.stream.IntStream|java.util.stream.LongStream|java.util.stream.DoubleStream" />
+            <property name="closeNotInFinally" value="false" />
+        </properties>
+    </rule>
+    <rule ref="category/java/errorprone.xml/CompareObjectsWithEquals">
+        <properties>
+            <property name="typesThatCompareByReference" value="java.lang.Enum,java.lang.Class" />
+        </properties>
+    </rule>
+    <rule ref="category/java/errorprone.xml/EmptyCatchBlock">
+        <properties>
+            <property name="allowCommentedBlocks" value="false" />
+            <property name="allowExceptionNameRegex" value="^(ignored|expected)$" />
+        </properties>
+    </rule>
+    <rule ref="category/java/errorprone.xml/MissingStaticMethodInNonInstantiatableClass">
+        <properties>
+            <property name="annotations" value="org.springframework.beans.factory.annotation.Autowired,javax.inject.Inject,com.google.inject.Inject" />
+        </properties>
+    </rule>
+    <rule ref="category/java/errorprone.xml/NonSerializableClass">
+        <properties>
+            <property name="checkAbstractTypes" value="false" />
+        </properties>
+    </rule>
+    <rule ref="category/java/errorprone.xml/ProperLogger">
+        <properties>
+            <property name="staticLoggerName" value="LOG" />
+            <property name="loggerName" value="log" />
+            <property name="loggerClass" value="org.apache.commons.logging.Log" />
+        </properties>
+    </rule>
+    <rule ref="category/java/errorprone.xml/TestClassWithoutTestCases">
+        <properties>
+            <property name="testClassPattern" value="^(?:.*\.)?Test[^\.]*$|^(?:.*\.)?.*Tests?$|^(?:.*\.)?.*TestCase$" />
+        </properties>
+    </rule>
 
-<!--    </rule>-->
+    <!-- Multithreading -->
+    <rule ref="category/java/multithreading.xml">
+        <!-- The following rules were excluded to be added again with explicit properties -->
+        <exclude name="NonThreadSafeSingleton"/>
+        <exclude name="UnsynchronizedStaticFormatter"/>
+    </rule>
+    <rule ref="category/java/multithreading.xml/NonThreadSafeSingleton">
+        <properties>
+            <property name="checkNonStaticMethods" value="true" />
+            <property name="checkNonStaticFields" value="false" />
+        </properties>
+    </rule>
+    <rule ref="category/java/multithreading.xml/UnsynchronizedStaticFormatter">
+        <properties>
+            <property name="allowMethodLevelSynchronization" value="false" />
+        </properties>
+    </rule>
 
-<!--    <rule ref="category/java/multithreading.xml">-->
+    <!-- Performance -->
+    <rule ref="category/java/performance.xml">
+        <!-- The following rules were excluded to be added again with explicit properties -->
+        <exclude name="ConsecutiveLiteralAppends"/>
+        <exclude name="TooFewBranchesForASwitchStatement"/>
+    </rule>
+    <rule ref="category/java/performance.xml/ConsecutiveLiteralAppends">
+        <properties>
+            <property name="threshold" value="1" />
+        </properties>
+    </rule>
+    <rule ref="category/java/performance.xml/TooFewBranchesForASwitchStatement">
+        <properties>
+            <property name="minimumNumberCaseForASwitch" value="3" />
+        </properties>
+    </rule>
 
-<!--    </rule>-->
-
-<!--    <rule ref="category/java/performance.xml">-->
-
-<!--    </rule>-->
-
-<!--    <rule ref="category/java/security.xml">-->
-
-<!--    </rule>-->
+    <!-- Security -->
+    <rule ref="category/java/security.xml"/>
 </ruleset>
