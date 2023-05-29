@@ -52,3 +52,21 @@ Rules for exclusion at `config/spotbugs/findbugs-exclude.xml`
 ```bash
 ./gradlew spotbugsTest
 ```
+
+### pmd
+
+Rules configuration at `config/pmd/ruleset.xml`
+
+Reports: `build/reports/pmd`
+
+**How to run**
+
+```bash
+./gradlew check
+```
+
+or
+
+```bash
+./gradlew ch
+```
