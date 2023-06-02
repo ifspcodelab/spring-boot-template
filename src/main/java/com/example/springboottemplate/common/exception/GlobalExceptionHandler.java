@@ -1,5 +1,6 @@
 package com.example.springboottemplate.common.exception;
 
+import com.example.springboottemplate.user.common.recaptcha.RecaptchaException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -38,6 +39,18 @@ public class GlobalExceptionHandler {
         problem.setDetail(details);
 
         log.warn("{} ({})", title, details);
+        return new ResponseEntity<>(problem, status);
+    }
+
+    @ExceptionHandler(RecaptchaException.class)
+    public ResponseEntity<ProblemDetail> recaptchaException(RecaptchaException ex) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        ProblemDetail problem = ProblemDetail.forStatus(status);
+        problem.setTitle(ex.getMessage());
+        problem.setDetail(ex.getMessage());
+
+        log.warn(ex.getMessage());
         return new ResponseEntity<>(problem, status);
     }
 }

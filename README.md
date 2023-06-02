@@ -31,11 +31,11 @@ Reports: `build/reports/checkstyle`
 **How to run**
 
 ```bash
- ./gradlew checkstyleMain
+./gradlew checkstyleMain
 ```
 
 ```bash
- ./gradlew checkstyleTest
+./gradlew checkstyleTest
 ```
 
 
